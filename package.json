@@ -1,0 +1,29 @@
+{
+  "name": "h5.rql",
+  "version": "0.1.0",
+  "description": "Resource Query Language (RQL) parser for browser and node.js.",
+  "keywords": ["h5", "rql", "query", "language", "parser"],
+  "license": "MIT",
+  "homepage": "https://github.com/morkai/h5.rql",
+  "author": {
+    "name": "Łukasz Walukiewicz",
+    "email": "lukasz@walukiewicz.eu",
+    "url": "http://lukasz.walukiewicz.eu/"
+  },
+  "repository": {
+    "type": "git",
+    "url":  "http://github.com/morkai/h5.rql.git"
+  },
+  "engine": ["node >=0.8"],
+  "main": "./lib/rql",
+  "devDependencies": {
+    "mocha": "1.7.x",
+    "should": "1.2.x",
+    "istanbul": "0.1.x",
+    "requirejs": "2.1.x"
+  },
+  "scripts": {
+    "test": "istanbul test --root ./lib ./node_modules/mocha/bin/_mocha",
+    "dist": "node bin/dist.js"
+  }
+}
