@@ -15,7 +15,7 @@
     "url":  "http://github.com/morkai/h5.rql.git"
   },
   "engine": ["node >=0.8"],
-  "main": "./lib/rql",
+  "main": "./lib/index",
   "devDependencies": {
     "mocha": "1.7.x",
     "should": "1.2.x",
@@ -24,6 +24,6 @@
   },
   "scripts": {
     "test": "istanbul test --root ./lib ./node_modules/mocha/bin/_mocha",
-    "dist": "node bin/dist.js"
+    "amd": "r.js -convert lib/ lib-amd/h5.rql/"
   }
 }
