@@ -1,6 +1,8 @@
 # h5.rql
 
-Resource Query Language (RQL) parser for browser and node.js.
+Resource Query Language (RQL) parser for node.js and the browser.
+
+[![Build Status](https://travis-ci.org/morkai/h5.rql.png?branch=master)](https://travis-ci.org/morkai/h5.rql)
 
 ## TODO
 

@@ -1,4 +1,10 @@
-var Query = require('../lib/Query');
+/*global describe:false,it:false*/
+
+'use strict';
+
+require('should');
+
+var Query = require((process.env.LIB_FOR_TESTS_DIR || '../lib') + '/Query');
 
 describe('Query', function()
 {

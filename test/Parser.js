@@ -1,5 +1,13 @@
-var Parser = require('../lib/Parser');
-var valueConverters = require('../lib/valueConverters');
+/*jshint maxlen:999,maxstatements:999*/
+/*global describe:false,it:false*/
+
+'use strict';
+
+require('should');
+
+var LIB_DIR = process.env.LIB_FOR_TESTS_DIR || '../lib';
+var Parser = require(LIB_DIR + '/Parser');
+var valueConverters = require(LIB_DIR + '/valueConverters');
 
 var allTests = {
   "arrays": [
@@ -68,7 +76,7 @@ var allTests = {
   ],
   "or grouping": [
     {"(a|b|c)": {name: "and", args: [{name: "or", args: ["a", "b", "c"]}]}},
-    {"(a(b)|c)": {name: "and", args: [{name: "or", args: [{name: "a", args: ["b"]}, "c"]}]}},
+    {"(a(b)|c)": {name: "and", args: [{name: "or", args: [{name: "a", args: ["b"]}, "c"]}]}}
   ],
   "complex grouping": [
     {"a&(b|c)": {name: "and", args: ["a", {name: "or", args: ["b", "c"]}]}},
@@ -216,60 +224,49 @@ describe("Parser", function()
     };
     var actualOptions = new Parser.Options(expectedOptions);
 
-    for (var option in expectedOptions)
+    Object.keys(expectedOptions).forEach(function(option)
     {
-      if (!expectedOptions.hasOwnProperty(option))
-      {
-        continue;
-      }
-
       actualOptions[option].should.be.equal(expectedOptions[option]);
-    }
+    });
   });
 
   describe("parse", function()
   {
-    for (var group in allTests)
+    Object.keys(allTests).forEach(function(group)
     {
-      if (!allTests.hasOwnProperty(group))
-      {
-        continue;
-      }
+      var tests = allTests[group];
 
-      (function(tests)
+      describe(group, function()
       {
-        describe(group, function()
+        tests.forEach(function(test)
         {
-          tests.forEach(function(test)
+          var parser = new Parser({
+            allowSlashedArrays: true,
+            jsonQueryCompatible: true
+          });
+
+          var input = Object.keys(test)[0];
+          var expected = test[input];
+
+          if (typeof expected === 'string')
           {
-            var parser = new Parser({
-              allowSlashedArrays: true,
-              jsonQueryCompatible: true
-            });
+            expected = parser.parse(expected);
+          }
 
-            var input = Object.keys(test)[0];
-            var expected = test[input];
-
-            if (typeof expected === 'string')
+          it(input, function()
+          {
+            if (expected === Error)
             {
-              expected = parser.parse(expected);
+              parser.parse.bind(parser, input).should.throw(expected);
             }
-
-            it(input, function()
+            else
             {
-              if (expected === Error)
-              {
-                (function() { parser.parse(input); }).should.throw(expected);
-              }
-              else
-              {
-                parser.parse(input).should.be.eql(expected);
-              }
-            });
+              parser.parse(input).should.be.eql(expected);
+            }
           });
         });
-      })(allTests[group]);
-    }
+      });
+    });
 
     it("should use empty string as a default empty value", function()
     {

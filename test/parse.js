@@ -1,6 +1,14 @@
-var rql = require('../lib');
+/*jshint maxlen:999,maxstatements:999*/
+/*global describe:false,it:false,beforeEach:false*/
+
+'use strict';
+
+require('should');
+
+var LIB_DIR = process.env.LIB_FOR_TESTS_DIR || '../lib';
+var rql = require(LIB_DIR);
 var parse = rql.parse;
-var Query = require('../lib/Query');
+var Query = require(LIB_DIR + '/Query');
 
 describe("parse", function()
 {

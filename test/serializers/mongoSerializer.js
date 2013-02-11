@@ -1,6 +1,14 @@
-var mongoSerializer = require('../../lib/serializers/mongoSerializer');
-var parse = require('../../lib').parse;
-var Query = require('../../lib/Query');
+/*jshint maxlen:999*/
+/*global describe:false,it:false*/
+
+'use strict';
+
+require('should');
+
+var LIB_DIR = process.env.LIB_FOR_TESTS_DIR || '../lib';
+var mongoSerializer = require(LIB_DIR + '/serializers/mongoSerializer');
+var parse = require(LIB_DIR).parse;
+var Query = require(LIB_DIR + '/Query');
 
 function q()
 {
@@ -114,24 +122,16 @@ describe("mongoSerializer", function()
     mongoQuery.should.have.property('skip').and.be.a('number');
   });
 
-  for (var input in tests)
+  Object.keys(tests).forEach(function(input)
   {
-    if (!tests.hasOwnProperty(input))
-    {
-      continue;
-    }
-
     var query = parse(input);
     var expectedObject = tests[input];
 
-    (function(input, expectedObject, query)
+    it("should serialize from " + input, function()
     {
-      it("should serialize from " + input, function()
-      {
-        mongoSerializer.fromQuery(query).should.be.eql(expectedObject);
-      });
-    })(input, expectedObject, query);
-  }
+      mongoSerializer.fromQuery(query).should.be.eql(expectedObject);
+    });
+  });
 
   it("should allow $where if specified in options", function()
   {

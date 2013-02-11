@@ -1,7 +1,15 @@
-var stringSerializer = require('../../lib/serializers/stringSerializer');
-var valueConverters = require('../../lib/valueConverters');
-var parse = require('../../lib').parse;
-var Query = require('../../lib/Query');
+/*jshint maxlen:999*/
+/*global describe:false,it:false*/
+
+'use strict';
+
+require('should');
+
+var LIB_DIR = process.env.LIB_FOR_TESTS_DIR || '../lib';
+var stringSerializer = require(LIB_DIR + '/serializers/stringSerializer');
+var valueConverters = require(LIB_DIR + '/valueConverters');
+var parse = require(LIB_DIR).parse;
+var Query = require(LIB_DIR + '/Query');
 
 var tests = {
   'a': 1,
@@ -103,13 +111,8 @@ describe("stringSerializer", function()
     stringSerializer.fromQuery(new Query()).should.be.a('string');
   });
 
-  for (var input in tests)
+  Object.keys(tests).forEach(function(input)
   {
-    if (!tests.hasOwnProperty(input))
-    {
-      continue;
-    }
-
     var query = parse(input);
     var expectedString = tests[input];
 
@@ -118,14 +121,11 @@ describe("stringSerializer", function()
       expectedString = input;
     }
 
-    (function(expectedString, query)
+    it("should serialize to " + expectedString, function()
     {
-      it("should serialize to " + expectedString, function()
-      {
-        stringSerializer.fromQuery(query).should.be.equal(expectedString);
-      });
-    })(expectedString, query);
-  }
+      stringSerializer.fromQuery(query).should.be.equal(expectedString);
+    });
+  });
 
   it("should serialize the custom value converter object", function()
   {
