@@ -11,6 +11,11 @@ var valueConverters = require(LIB_DIR + '/valueConverters');
 var parse = require(LIB_DIR).parse;
 var Query = require(LIB_DIR + '/Query');
 
+function getTime(dateString)
+{
+  return new Date(dateString).getTime();
+}
+
 var tests = {
   'a': 1,
   'a()': 1,
@@ -75,11 +80,11 @@ var tests = {
   'a(isodate:2012)': 'a(epoch:1325376000000)',
   'a(isodate:2012-12-22)': 'a(epoch:1356134400000)',
   'a(isodate:2012-12-22T18%3A48%3A00Z)': 'a(epoch:1356202080000)',
-  'a(date:2012)': 'a(epoch:1325376000000)',
-  'a(date:2012-12-22)': 'a(epoch:1356134400000)',
+  'a(date:2012)': 'a(epoch:' + getTime('2012') + ')',
+  'a(date:2012-12-22)': 'a(epoch:' + getTime('2012-12-22') + ')',
   'a(date:2012-12-22T18%3A48%3A00Z)': 'a(epoch:1356202080000)',
-  'a(date:Dec%2025%2C%201995)': 'a(epoch:819846000000)',
-  'a(date:Mon%2C%2025%20Dec%201995%2013%3A30%3A00%20GMT%2B0430)': 'a(epoch:819882000000)',
+  'a(date:Dec%2025%2C%201995)': 'a(epoch:' + getTime('Dec 25 1995') + ')',
+  'a(date:Mon%2C%2025%20Dec%201995%2013%3A30%3A00%20GMT%2B0430)': 'a(epoch:' + getTime('Mon, 25 Dec 1995 13:30:00 GMT+0430') + ')',
   'a(re:simple)': 1,
   'a(re:%5Efoo%2Bba%28r%7Cz%29%24)': 1,
   'a(re:%2Fsimple%2F)': 'a(re:simple)',
