@@ -5,7 +5,7 @@
 
 require('should');
 
-var LIB_DIR = process.env.LIB_FOR_TESTS_DIR || '../lib';
+var LIB_DIR = process.env.LIB_FOR_TESTS_DIR || '../../lib';
 var mongoSerializer = require(LIB_DIR + '/serializers/mongoSerializer');
 var parse = require(LIB_DIR).parse;
 var Query = require(LIB_DIR + '/Query');

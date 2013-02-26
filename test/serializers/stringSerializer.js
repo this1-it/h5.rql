@@ -5,7 +5,7 @@
 
 require('should');
 
-var LIB_DIR = process.env.LIB_FOR_TESTS_DIR || '../lib';
+var LIB_DIR = process.env.LIB_FOR_TESTS_DIR || '../../lib';
 var stringSerializer = require(LIB_DIR + '/serializers/stringSerializer');
 var valueConverters = require(LIB_DIR + '/valueConverters');
 var parse = require(LIB_DIR).parse;
