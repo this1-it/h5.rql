@@ -16,7 +16,7 @@ function q()
     selector: {},
     fields: {},
     sort: {},
-    limit: -1,
+    limit: 0,
     skip: 0
   };
 
