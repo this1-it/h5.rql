@@ -179,4 +179,21 @@ describe("stringSerializer", function()
 
     delete valueConverters.foo;
   });
+
+  it("should double encode if so specified", function()
+  {
+    var tests = {
+      'a=hello%20world': 'a=hello%2520world',
+      're:%5Efoo%2Bba%28r%7Cz%29%24': 're:%255Efoo%252Bba%2528r%257Cz%2529%2524',
+      'a(glob:*foo%3Fbar*)': 'a(re:%252Ffoo.%253Fbar%252Fi)'
+    };
+
+    Object.keys(tests).forEach(function(input)
+    {
+      var actual = stringSerializer.fromQuery(parse(input), {doubleEncode: true});
+      var expected = tests[input];
+
+      actual.should.be.equal(expected);
+    });
+  });
 });

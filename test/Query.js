@@ -50,6 +50,20 @@ describe("Query", function()
     {
       new Query().toString().should.be.a('string');
     });
+
+    it("should pass the specified options to the serializer", function()
+    {
+      var queryObj = {
+        selector: {
+          name: 'and',
+          args: [
+            {name: 'eq', args: ['test', '(^.^)']}
+          ]
+        }
+      };
+
+      new Query.fromObject(queryObj).toString({doubleEncode: true}).should.be.eql('test=%2528%255E.%255E%2529');
+    });
   });
 
   describe("isEmpty", function()
