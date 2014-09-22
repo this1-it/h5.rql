@@ -111,6 +111,21 @@ var tests = {
 
 describe("mongoSerializer", function()
 {
+  it("should export Options", function()
+  {
+    mongoSerializer.fromQuery.should.have.property('Options').and.be.a('function');
+  });
+
+  it("should use the specified Options instance", function()
+  {
+    var options = new mongoSerializer.fromQuery.Options({
+      isPropertyAllowed: function() { return false; }
+    });
+    var mongoQuery = mongoSerializer.fromQuery(parse('quas=1&wex=2&exort=3'), options);
+
+    Object.keys(mongoQuery.selector).should.be.eql([]);
+  });
+
   it("should return an object with selector, fields, sort, limit and skip properties", function()
   {
     var mongoQuery = mongoSerializer.fromQuery(new Query());
