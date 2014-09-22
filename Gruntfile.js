@@ -1,11 +1,15 @@
+// Copyright (c) 2014, Łukasz Walukiewicz <lukasz@walukiewicz.eu>. Some Rights Reserved.
+// Licensed under the MIT License <http://opensource.org/licenses/MIT>.
+// Part of the h5.rql project <http://lukasz.walukiewicz.eu/p/h5.rql>
+
 /*global module:false*/
+
+'use strict';
 
 var path = require('path');
 
 module.exports = function(grunt)
 {
-  'use strict';
-
   var buildDir = './build/';
   var lcovInstrumentDir = './build/instrument/';
   var lcovReportDir = './build/coverage/';
