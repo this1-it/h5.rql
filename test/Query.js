@@ -48,7 +48,7 @@ describe("Query", function()
   {
     it("should return a string", function()
     {
-      new Query().toString().should.be.a('string');
+      new Query().toString().should.be.type('string');
     });
 
     it("should pass the specified options to the serializer", function()

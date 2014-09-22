@@ -113,7 +113,7 @@ describe("stringSerializer", function()
 {
   it("should return a string", function()
   {
-    stringSerializer.fromQuery(new Query()).should.be.a('string');
+    stringSerializer.fromQuery(new Query()).should.be.type('string');
   });
 
   Object.keys(tests).forEach(function(input)

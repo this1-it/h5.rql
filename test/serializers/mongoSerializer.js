@@ -113,7 +113,7 @@ describe("mongoSerializer", function()
 {
   it("should export Options", function()
   {
-    mongoSerializer.fromQuery.should.have.property('Options').and.be.a('function');
+    mongoSerializer.fromQuery.should.have.property('Options').and.be.type('function');
   });
 
   it("should use the specified Options instance", function()
@@ -130,11 +130,11 @@ describe("mongoSerializer", function()
   {
     var mongoQuery = mongoSerializer.fromQuery(new Query());
 
-    mongoQuery.should.have.property('selector').and.be.a('object');
-    mongoQuery.should.have.property('fields').and.be.a('object');
-    mongoQuery.should.have.property('sort').and.be.a('object');
-    mongoQuery.should.have.property('limit').and.be.a('number');
-    mongoQuery.should.have.property('skip').and.be.a('number');
+    mongoQuery.should.have.property('selector').and.be.type('object');
+    mongoQuery.should.have.property('fields').and.be.type('object');
+    mongoQuery.should.have.property('sort').and.be.type('object');
+    mongoQuery.should.have.property('limit').and.be.type('number');
+    mongoQuery.should.have.property('skip').and.be.type('number');
   });
 
   Object.keys(tests).forEach(function(input)
