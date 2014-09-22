@@ -304,5 +304,14 @@ describe("Parser", function()
         args: ['a', 'b', 'c']
       });
     });
+
+    it("should throw if FIQL is used but fiqlCompatible option is disabled", function()
+    {
+      var parser = new Parser({
+        fiqlCompatible: false
+      });
+
+      parser.parse.bind(parser, "a=b").should.throw(/invalid character/i);
+    });
   });
 });
