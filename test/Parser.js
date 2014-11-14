@@ -67,7 +67,10 @@ var allTests = {
   ],
   "arbitrary FIQL desugaring": [
     {"a=b=c": {name: "and", args: [{name: "b", args: ["a", "c"]}]}},
-    {"a(b=cd=e)": {name: "and", args: [{name: "a", args: [{name: "cd", args: ["b", "e"]}]}]}}
+    {"a(b=cd=e)": {name: "and", args: [{name: "a", args: [{name: "cd", args: ["b", "e"]}]}]}},
+    {"a=b=(c)": {name: "and", args: [{name: "b", args: ["a", ["c"]]}]}},
+    {"a=b=(c,d,e)": {name: "and", args: [{name: "b", args: ["a", ["c", "d", "e"]]}]}},
+    {"a=b=()": {name: "and", args: [{name: "b", args: ["a", []]}]}}
   ],
   "and grouping": [
     {"a&b&c": {name: "and", args: ["a", "b", "c"]}},
