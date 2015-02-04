@@ -108,7 +108,10 @@ var tests = {
   'limit(5)&limit(10,20)': 'limit(10,20)',
   'limit(10,20)&exclude(a,b)&limit(5)&sort(a,b)&select(c,d)': 'select(c,d)&sort(a,b)&limit(5)',
   'select(a,b)&a(select(c,d))': 'select(c,d)&a(select(c,d))',
-  'a(sort(a,b))&sort(c,d)&b(sort(-e,-f))': 'sort(-e,-f)&a(sort(a,b))&b(sort(-e,-f))'
+  'a(sort(a,b))&sort(c,d)&b(sort(-e,-f))': 'sort(-e,-f)&a(sort(a,b))&b(sort(-e,-f))',
+  'a(~13~37~)': 'a(~13~37~)',
+  'a=!13\'37~': 1,
+  'a=~&b=!&c=\'': 1
 };
 
 describe("stringSerializer", function()

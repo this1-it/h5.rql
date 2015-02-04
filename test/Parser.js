@@ -173,6 +173,15 @@ var allTests = {
       ]}
     ]}}
   ],
+  "rare characters": [
+    {"a(~13~37~)": {name: "and", args: [{name: "a", args: ["~13~37~"]}]}},
+    {"a=!13'37~": {name: "and", args: [{name: "eq", args: ["a", "!13'37~"]}]}},
+    {"a=~&b=!&c='": {name: "and", args: [
+      {name: "eq", args: ["a", "~"]},
+      {name: "eq", args: ["b", "!"]},
+      {name: "eq", args: ["c", "'"]}
+    ]}}
+  ],
   "errors": [
     // Mixed conjunctions
     {"a=b|c=d&e=f": Error},
