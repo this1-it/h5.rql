@@ -4,18 +4,20 @@
   "description": "Resource Query Language (RQL) parser for browser and node.js.",
   "keywords": ["h5", "rql", "query", "language", "parser"],
   "license": "MIT",
-  "homepage": "https://github.com/morkai/h5.rql",
+  "homepage": "https://github.com/tisone/h5.rql",
   "author": {
-    "name": "Łukasz Walukiewicz",
-    "email": "lukasz@walukiewicz.eu",
-    "url": "http://lukasz.walukiewicz.eu/"
+    "name": "tisone",
+    "email": "tisone@this1.it",
+    "url": "http://this1.it/"
   },
-  "bugs": "https://github.com/morkai/h5.rql/issues",
+  "bugs": "https://github.com/tisone/h5.rql/issues",
   "repository": {
     "type": "git",
-    "url":  "http://github.com/morkai/h5.rql.git"
+    "url":  "http://github.com/tisone/h5.rql.git"
   },
-  "engine": ["node ~0.10.33"],
+  "engine": [
+    "node >=0.8"
+  ],
   "main": "./lib/index",
   "devDependencies": {
     "requirejs": "~2.1.15",
